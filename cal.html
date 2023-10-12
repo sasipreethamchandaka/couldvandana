@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input id="display" type="text">
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendToDisplay('/')">/</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+====================================================================================
+CSS
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.calculator input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.calculator .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.calculator button {
+    width: 100%;
+    padding: 10px;
+}
+=========================================================================================
+JAVASCRIPT
+let displayValue = "";
+
+function appendToDisplay(value) {
+    displayValue += value;
+    document.getElementById("display").value = displayValue;
+}
+
+function clearDisplay() {
+    displayValue = "";
+    document.getElementById("display").value = "";
+}
+
+function calculateResult() {
+    try {
+        displayValue = eval(displayValue);
+        document.getElementById("display").value = displayValue;
+    } catch (error) {
+        document.getElementById("display").value = "Error";
+    }
+}
